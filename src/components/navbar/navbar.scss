@@ -1,0 +1,41 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:3rem 3rem;
+    // backdrop-filter: blur(25px);    
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 70px;
+}
+
+.tag{
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+    align-items: center;
+    color: #fff;
+}
+
+.tag img{
+    width: auto;
+    margin-right: 10px;
+}
+
+.register{
+    padding: 15px 28px;
+    background: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: #fff;
+}
+
+.register:hover{
+    background: #d2d2d2;
+    cursor: pointer;
+    border: #fff;   
+}

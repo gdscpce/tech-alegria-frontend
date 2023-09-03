@@ -1,0 +1,36 @@
+.wrapper {
+    display: grid;
+    margin: 20px 0px;
+}
+
+.box {
+    display: flex;
+    
+    width: 386.152px;
+    height: 115.251px;
+    padding: 15px 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #fff;
+    gap:9px;
+    border-radius: 10px;
+}
+
+.box2{
+    display: flex;
+    transform: rotate(-6.658deg);
+    z-index: -10;
+    background: #000;
+    width: 386.152px;
+    height: 115.251px;
+    padding: 15px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #DFFFF0;;
+    border-radius: 10px;
+}
+
+.box, .box2{
+    grid-area: 1/1;
+}
