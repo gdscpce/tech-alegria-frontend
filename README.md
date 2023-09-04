@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Tech-Alegria
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Routes 
 
-## Available Scripts
+## Components
+* Navbar
+* Landing
+* Login/Signup
+* Problem Statement
+* Leaderboards
+* Footer
 
-In the project directory, you can run:
+## Data
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Flow
+### Navbar
+* Simple Transparent Navbar showing Tech Alegria and GDSC Logo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Landing
+* Full Width Landing Page needs to be done as per Design
 
-### `npm test`
+### Signup
+* Entry Level Component
+* Reactive Form
+* Client sends auth request for account creation
+* Server responds with success auth 
+* Redirect to Landing Page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Login 
+* Reactive Form 
+* Client send request with credentials to check authentication
+* Server responds with auth success
+* Redirect to Landing Page
 
-### `npm run build`
+### Problem Statement
+* Timer till 2hr
+* Until timer is less show Problem Statement List
+* List will redirect to hackerrank respective link
+* Modal will appear for custom testcase and output along with status
+* Client will cross-check the answer
+    * IF matches THEN change status of current list to pass and unlock next list
+    * ELSE change status of current list to failed 
+* Client will send POST request to update the status of participant
+* Server will respond with success status code
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Leaderboard
+* Client will send request asking for all participants details
+* Server will respond with Json data
+* Client will feed the data to Table and show in descending order of score
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Footer
+* Simple Transparent Footer showing Collab text with year
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Github Rules
+* Make a new Branch for new feature
+* Make a Pull Reuqest and Approve from Nishant and Sumant before merging
+* Frequently take a parent branch pull
+* Test the feature from your side locally before merging
+* Merge into Main branch will be only done by Nishant or Sumant
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Team
+* Bedant
+* Sumant
+* Nishant
+* Atharva

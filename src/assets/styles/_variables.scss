@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../fonts/Press_Start_2P/PressStart2P-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf');
+}
+
+//Font Family
+$font-family-base: 'Open Sans', 'Poppins', 'Ubuntu', sans-serif;
+$font-family-mono: 'Press Start 2P', 'Courier New', Courier, monospace;
+$body-gradient: url('../images/body-gradient.svg');
+
+// Colors
+$yellow:             #F9AB00;
+$blue:               #4285F4;
+$red:                #CF0000;
+$green:              #34A853;
+$textColorVariant:   #585858;
+$gray100:            #E1E1E1;
+$gray200:            #CDCDCD;
+$black:              #000000;
+$white:              #ffffff;
+
+// Font Size
+$font-size-base:      1rem;
+$font-size-l:         $font-size-base * 2;                //32px
+$font-size-m:         $font-size-base * 1.5;              //24px
+$font-size-s:        $font-size-base * 1.125;             //18px
+$font-size-sm:        $font-size-base * 1.25;             //20px
+$font-size-default:   $font-size-base * .875;             //14px
+$font-size-xs:        $font-size-base * .75;              //12px
+$font-size-xxs:        $font-size-base * .625;            //10px
+
+
+//Gutters
+$gutter:      1rem;
+$gutter1_4:   $gutter * 0.25;                         //4px
+$gutter1_2:   $gutter * 0.5;                          //8px
+$gutter10:    $gutter * 0.625;                       //10px
+$gutter12:    $gutter * 0.75;                        //12px
+$gutter20:    $gutter * 1.25;                        //20px
+$gutter24:    $gutter * 1.5;                         //24px
+$gutter2x:    $gutter * 2;                           //32px
+$gutter3x:    $gutter * 3;                           //48px
+$gutter4x:    $gutter * 4;                           //64px
+
+
+//Font Weights
+$font-weight100: 100;
+$font-weight200: 200;
+$font-weight300: 300;
+$font-weight400: 400;
+$font-weight500: 500;
+$font-weight600: 600;
+$font-weight700: 700;
+$font-weight800: 800;
+$font-weight900: 900;
+
+// Border Radius
+$border-radius-small:   4px;
+$border-radius-normal:  8px;
+$border-radius-medium:  12px;
+$border-radius-pill:    22px;
+$border-radius-button:  50px;
+$border-radius-rounded:  50%;
+
+// Transitions
+$transition-long:       500ms all ease-in-out;
+$transition-in-out:     200ms all ease-in-out;
+$transition-in:         200ms all ease-in;
+$transition-out:        200ms all ease-out;
+
+$box-shadow-success-large:     0px 0px 38px 4px rgba(52, 168, 83, 0.36);
+$box-shadow-failed-large:     0px 0px 38px 4px rgba(207, 0, 0, 0.36);
+$box-shadow-locked-large:     0px 0px 38px 4px rgba(225, 225, 225, 0.36);
