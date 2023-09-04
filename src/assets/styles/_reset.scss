@@ -1,0 +1,66 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialised;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-default;
+  background-color: $white;
+  color: $textColorVariant;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  background: $body-gradient no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+h1,h2,h3,h4,h5,h6,p,label {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+:any-link {
+  color: unset;
+}
+
+::placeholder {
+  color: $gray200;
+}
+
+a, button {
+  font-size: $font-size-default;
+  transition: $transition-in-out;
+}
+
+
+input {
+  font-size: $font-size-default;
+  padding: $gutter1_2 $gutter;
+  background: transparent;
+  outline: 0;
+  border: 0;
+
+  &[type=submit] {
+    cursor: pointer;
+    transition: $transition-in-out;
+  }
+}

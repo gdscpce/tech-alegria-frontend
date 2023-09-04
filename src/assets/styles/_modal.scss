@@ -1,0 +1,59 @@
+@keyframes slideIn {
+  from {top: 100vh;}
+  to {top: 0;}
+}
+
+
+.modal {
+  @include element-position(fixed, 0, unset, unset, 0);
+  width: 100%;
+  height: 100%;
+  display: none;
+  pointer-events: none;
+  z-index: 1000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  animation: slideIn 500ms;
+  transition: $transition-in-out;
+
+  &-backdrop {
+    @include sudo-fill(fixed, 0, 0, 0, 0);
+    z-index: 1001;
+    background: transparentize($color: $black, $amount: 0.5);
+    pointer-events: auto;
+  }
+
+  &-dialog {
+    position: relative;
+    width: auto;
+    pointer-events: none;
+    max-width: 530px;
+    margin: $gutter24 auto;
+    z-index: 1055;
+  }
+
+  &-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: $white;
+    background-clip: padding-box;
+    border: 1px solid $gray200;
+    border-radius: $border-radius-normal;
+    outline: 0;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray200;
+    padding: $gutter;
+  }
+
+  &.show {
+    display: block;
+  }
+}
