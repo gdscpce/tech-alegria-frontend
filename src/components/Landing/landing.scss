@@ -1,0 +1,11 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/sudo";
+
+.parent::before {
+    @include sudo-fill(absolute, 0, unset, 0, 50%);
+    transform: translateX(50%);
+    height: 100%;
+    width: 5px;
+    background-color: $black;
+    font-family: $font-family-mono;
+}
