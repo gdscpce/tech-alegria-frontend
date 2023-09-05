@@ -1,6 +1,7 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/sudo";
 
+
 .parent::before {
     @include sudo-fill(absolute, 0, unset, 0, 50%);
     transform: translateX(50%);
@@ -8,4 +9,46 @@
     width: 5px;
     background-color: $black;
     font-family: $font-family-mono;
+}
+
+.landing_home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing_home h1 {
+    color: #000;
+    font-family: $font-family-mono;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2.75px;
+    margin: 3rem 0px;
+}
+
+.landing_home p {
+    color: #000;
+    width: 60%;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 1rem 0px;
+}
+
+.landing_home button {
+    display: flex;
+    padding: 11px 30px;
+    margin: 2rem 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: #F9AB00;
+    border: none;
 }

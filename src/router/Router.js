@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import Landing from '../components/Navbar/Navbar';
+import Landing from '../components/Landing/Landing';
 import { Route, Routes } from 'react-router-dom';
 
 export default function Router() {
