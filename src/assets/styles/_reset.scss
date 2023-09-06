@@ -37,6 +37,10 @@ a {
   color: unset;
   text-decoration: none;
 }
+button {
+  border: 0;
+  background: transparent;
+}
 
 ::placeholder {
   color: $gray200;

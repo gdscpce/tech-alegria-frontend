@@ -1,0 +1,16 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/flex";
+@import "../../assets/styles/sudo";
+
+.footer {
+    @include element-position(fixed, unset, 0, 0, 0);
+    @include flex(row, center, space-between);
+    padding: $gutter24 180px;
+    margin-top: $gutter3x;
+
+    &__title, &__year {
+        font-size: $font-size-m;
+        font-weight: $font-weight600;
+        color: $textColorVariant;
+    }
+}
