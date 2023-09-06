@@ -1,0 +1,46 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/sudo";
+@import "../../assets/styles/flex";
+
+.auth {
+    width: 500px;
+    margin: 0 auto;
+
+    &__title {
+        color: $black;
+        font-family: $font-family-mono;
+        text-align: center;
+        font-size: $font-size-l;
+        margin-bottom: $gutter4x;
+    }
+
+    &__login {
+        @include flex(column, center, center);
+        gap: $gutter20;
+
+        label {
+            width: 100%;
+
+            .h3 {
+                font-weight: normal;
+                line-height: 1.5;
+                font-size: $font-size-base;
+            }
+        }
+        .btn-submit {
+            color: $white;
+            background-color: $blue;
+
+            &:hover {
+                background: lighten($color: $blue, $amount: 5);
+            }
+        }
+    }
+
+    &__toggle {
+        color: $blue;
+        width: 100%;
+        text-align: center;
+        margin-top: $gutter1_2;
+    }
+}

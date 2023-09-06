@@ -1,11 +1,47 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/sudo";
+@import "../../assets/styles/flex";
 
-.parent::before {
-    @include sudo-fill(absolute, 0, unset, 0, 50%);
-    transform: translateX(50%);
-    height: 100%;
-    width: 5px;
-    background-color: $black;
-    font-family: $font-family-mono;
+.landing {
+    @include flex(column, center, center);
+    padding: $gutter $gutter2x;
+    margin: 0 auto;
+
+    &__img {
+        margin-bottom: $gutter4x;
+    }
+
+    &__title {
+        color: $black;
+        font-family: $font-family-mono;
+        font-size: $font-size-l;
+        margin-bottom: $gutter24;
+    }
+
+    &__desc {
+        color: $black;
+        text-align: center;
+        max-width: 30%;
+        margin: 1rem 0px;
+        margin-bottom: $gutter3x;
+    }
+
+    .parent {
+        &::before {
+            @include sudo-fill(absolute, 0, unset, 0, 50%);
+            transform: translateX(50%);
+            height: 100%;
+            width: 5px;
+            background-color: $black;
+            font-family: $font-family-mono;
+        }
+    }    
+
+    &__btn {
+        color: $black;
+        background: $yellow;
+        &:hover {
+            background: lighten($yellow, 5);
+        }
+    }
 }
