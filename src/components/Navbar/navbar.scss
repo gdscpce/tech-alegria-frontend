@@ -1,7 +1,7 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/flex";
+
 .navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-items: center;
-    padding: 10px 100px;
+    @include flex(row, center, space-between);
+    padding: $gutter10 100px;
 }

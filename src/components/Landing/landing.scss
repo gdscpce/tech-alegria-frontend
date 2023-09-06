@@ -1,54 +1,47 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/sudo";
+@import "../../assets/styles/flex";
 
+.landing {
+    @include flex(column, center, center);
+    padding: $gutter $gutter2x;
+    margin: 0 auto;
 
-.parent::before {
-    @include sudo-fill(absolute, 0, unset, 0, 50%);
-    transform: translateX(50%);
-    height: 100%;
-    width: 5px;
-    background-color: $black;
-    font-family: $font-family-mono;
-}
+    &__img {
+        margin-bottom: $gutter4x;
+    }
 
-.landing_home {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    &__title {
+        color: $black;
+        font-family: $font-family-mono;
+        font-size: $font-size-l;
+        margin-bottom: $gutter24;
+    }
 
-.landing_home h1 {
-    color: #000;
-    font-family: $font-family-mono;
-    font-size: 50px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 2.75px;
-    margin: 3rem 0px;
-}
+    &__desc {
+        color: $black;
+        text-align: center;
+        max-width: 30%;
+        margin: 1rem 0px;
+        margin-bottom: $gutter3x;
+    }
 
-.landing_home p {
-    color: #000;
-    width: 60%;
-    text-align: center;
-    font-family: Open Sans;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin: 1rem 0px;
-}
+    .parent {
+        &::before {
+            @include sudo-fill(absolute, 0, unset, 0, 50%);
+            transform: translateX(50%);
+            height: 100%;
+            width: 5px;
+            background-color: $black;
+            font-family: $font-family-mono;
+        }
+    }    
 
-.landing_home button {
-    display: flex;
-    padding: 11px 30px;
-    margin: 2rem 0px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 6px;
-    background: #F9AB00;
-    border: none;
+    &__btn {
+        color: $black;
+        background: $yellow;
+        &:hover {
+            background: lighten($yellow, 5);
+        }
+    }
 }

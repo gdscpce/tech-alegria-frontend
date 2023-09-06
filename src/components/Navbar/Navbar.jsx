@@ -5,8 +5,8 @@ import "./navbar.scss";
 export default function Navbar() {
   return (  
     <div className='navbar'>
-        <img src={gdscLogo} alt='GDSC Logo' />
-        <img src={techAlegria} alt='Tech Alegria Logo' />
+        <a href="/"><img src={gdscLogo} alt='GDSC Logo' /></a>
+        <a href="/"><img src={techAlegria} alt='Tech Alegria Logo' /></a>
     </div>
   )
 }
