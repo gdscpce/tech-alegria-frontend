@@ -1,11 +1,10 @@
 .wrapper {
-    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .btn {
     cursor: pointer;
     border: 0;
-    background: transparent;
     padding: $gutter10 $gutter;
     border-radius: $border-radius-normal;
     transition: $transition-in-out;
