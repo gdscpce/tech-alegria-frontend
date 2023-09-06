@@ -14,7 +14,7 @@
         margin-bottom: $gutter4x;
     }
 
-    &__login {
+    &__user {
         @include flex(column, center, center);
         gap: $gutter20;
 
@@ -26,12 +26,19 @@
                 line-height: 1.5;
                 font-size: $font-size-base;
             }
+            .error {
+                color: $red;
+            }
         }
         .btn-submit {
             color: $white;
             background-color: $blue;
 
-            &:hover {
+            &:disabled {
+                background-color: $gray200;
+            }
+
+            &:not(:disabled):hover {
                 background: lighten($color: $blue, $amount: 5);
             }
         }

@@ -37,6 +37,10 @@ a {
   color: unset;
   text-decoration: none;
 }
+button {
+  border: 0;
+  background: transparent;
+}
 
 ::placeholder {
   color: $gray200;
@@ -55,7 +59,7 @@ input {
   outline: 0;
   border: 0;
 
-  &[type=text], &[type=mail] {
+  &[type=text], &[type=email], &[type=password] {
     height: 44px;
     width: 100%;
     border-radius: $border-radius-normal;
