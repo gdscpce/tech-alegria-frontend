@@ -8,4 +8,8 @@
     padding: $gutter10 $gutter;
     border-radius: $border-radius-normal;
     transition: $transition-in-out;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 }

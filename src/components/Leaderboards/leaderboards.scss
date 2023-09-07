@@ -1,0 +1,94 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/sudo";
+@import "../../assets/styles/flex";
+
+.leaderboards {
+    @include flex(column, center, center);
+    gap: $gutter2x;
+    max-width: 85%;
+    margin: 0 auto;
+
+    .h1 {
+        font-weight: bold;
+        font-size: $font-size-l;
+        color: $black;
+    }
+    .table-responsive {
+        width: 100%;
+        overflow: auto;
+        height: 65vh;
+        background-color: $white;
+        border: 1px solid $gray200;
+        border-radius: $border-radius-medium;
+        box-shadow: $box-shadow-locked-large;
+    }
+
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        table-layout: fixed;
+        text-align: center;
+
+        a {
+            color: $blue;
+            text-decoration: underline;
+        }
+    
+        thead th {
+            background-color: $white;
+            font-weight: bold;
+            color: $black;
+
+            &:first-child {
+                text-align: start;
+                width: 100%;
+            }
+        }
+
+        th, td {
+            border-top: 1px solid $gray200;
+            border-left: 1px solid $gray200;
+
+            &:first-of-type {
+                border-left: none;
+            }
+        }
+
+        tr:first-child {
+            th {
+                border-top: none;
+            }
+            th:first-child {
+                border-top-left-radius: $border-radius-normal;
+            }
+            th:last-child {
+                border-top-right-radius: $border-radius-normal;
+            }
+        }
+        tr:last-child {
+            td {
+                border-bottom: 1px solid $gray200;
+            }
+        }
+
+        tbody td:first-child {
+            text-align: start;
+        }
+
+        tbody tr:nth-child(even) td {
+            background-color: $white;
+        }
+        tbody tr:nth-child(odd) td {
+            background-color: $gray300;
+        }
+
+        .result {
+            @include flex(column, center, center);
+            span {
+                color: $green;
+                font-size: $font-size-sm;
+                font-weight: bold;
+            }
+        }
+    }
+}
