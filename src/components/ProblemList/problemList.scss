@@ -1,0 +1,305 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/sudo";
+@import "../../assets/styles/flex";
+
+.problem {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: baseline;
+    justify-content: center;
+    padding: $gutter $gutter3x;
+    gap: $gutter2x;
+
+    .left {
+        .timer {
+            width: 550px;
+            &__title {
+                position: relative;
+                padding: $gutter;
+                font-size: $font-size-base;
+                border: 1px solid $gray200;
+                border-radius: $border-radius-normal;
+                width: 80%;
+                text-align: start;
+                padding-left: 40px;
+                margin-bottom: $gutter1_2;
+
+                &::before {
+                    @include sudo-fill(absolute, 50%, unset, unset, 16px);
+                    width: 14px;
+                    height: 14px;
+                    background-size: 14px 14px;
+                    background-color: $red;
+                    border-radius: $border-radius-small;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+
+        .challenges {
+            margin-top: $gutter2x;
+
+            &__title {
+                font-size: $font-size-sm;
+                font-weight: bold;
+                color: $black;
+            }
+
+            &__list {
+                @include flex(column, start, center);
+                
+                h3 {
+                    font-weight: normal;
+                }
+
+                .challenge {
+                    @include flex(row, center, space-between);
+                    position: relative;
+                    width: 80%;
+                    color: $black;
+                    padding: $gutter20;
+                    padding-left: calc(40px + $gutter);
+                    border-radius: $border-radius-normal;
+                    background-color: $white;
+                    margin: $gutter1_2;
+                    margin-top: calc($gutter20 + 12px);
+
+                    &::before {
+                        @include sudo-fill(absolute, 47%, unset, unset, 20px);
+                        height: 24px;
+                        width: 24px;
+                        transform: translateY(-50%);
+                        z-index: 1;
+                    }
+                    &.locked::before{
+                        background: url('../../assets/images/icon-lock.svg') center center no-repeat;
+                    }
+                    &.passed::before{
+                        background: url('../../assets/images/icon-locked--passed.svg') center center no-repeat;
+                    }
+                    &.failed::before{
+                        background: url('../../assets/images/icon-locked--failed.svg') center center no-repeat;
+                    }
+
+                    &.active {
+                        &.passed{
+                            box-shadow: $box-shadow-success-large;
+                            &:after {
+                                border-color: $green;
+                            }
+                        }
+                        &.locked{
+                            box-shadow: $box-shadow-locked-large;
+                            &:after {
+                                border-color: $gray200;
+                            }
+                        }
+                        &.failed{
+                            box-shadow: $box-shadow-failed-large;
+                            &:after {
+                                border-color: $red;
+                            }
+                        }
+                        &::after{
+                            @include sudo-fill(absolute, -12px, -12px, -12px, -12px);
+                            border-width: 6px;
+                            border-style: solid;
+                            border-radius: $border-radius-medium;
+                        }
+                    }
+
+                    &:not(.active) {
+                        &.passed{
+                            border: 2px solid $green;
+                        }
+                        &.locked{
+                            border: 2px solid $gray200;
+                        }
+                        &.failed{
+                            border: 2px solid $red;
+                        }
+                    }
+
+                    .buttons {
+                        @include flex(row, center, center);
+                        gap: $gutter;
+                        .btn-link {
+                            position: relative;
+                            height: 16px;
+                            width: 16px;
+                            &::before {
+                                @include sudo-fill(absolute, 0, 0, 0, 0);
+                                height: 100%;
+                                width: 100%;
+                                z-index: 2;
+                                background: url('../../assets/images/external-link.svg') center center no-repeat;
+                                transition: $transition-in-out;
+                            }
+                            &:hover::before {
+                                transform: scale(1.2);
+                            }
+                        }
+                        .btn-unlock {
+                            color: $green;
+                            &:hover {
+                                background-color: $green;
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .right {
+        height: 100%;
+        padding: $gutter2x;
+        background-color: $white;
+        border-radius: $border-radius-medium;
+        border: 1px solid $gray200;
+        height: 750px;
+
+        &__logout {
+            color: $red;
+            float: right;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &__toggle {
+            width: max-content;
+            padding: $gutter1_2;
+            background: $white;
+            border: 1px solid $gray200;
+            border-radius: $border-radius-normal;
+            margin: 0 auto;
+
+            .active {
+                background: $gray200;
+                color: $white;
+                border-radius: $border-radius-small;
+            }
+        }
+
+        &__content {
+            padding-top: $gutter2x;
+
+            ul {
+                list-style: disc;
+                padding-inline-start: 4ch;
+
+                li {
+                    line-height: 2;
+                }
+            }
+
+            .tab {
+                max-height: 0;
+                overflow: hidden;
+
+                &.show {
+                    max-height: 100%;
+                }
+
+                .points {
+                    margin-bottom: $gutter2x;
+                    b {
+                        display: inline-block;
+                        width: 50px; 
+                        margin-right: $gutter;
+                        color: $black
+                    }
+
+                    &--large {
+                        @include flex(column, start, center);
+
+                        span {
+                            color: $black;
+                            font-size: 100px;
+                            font-weight: bold;
+                            width: 100%;
+                            text-align: center;
+                            padding: 100px 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal {
+    .testcase {
+        label {
+            font-size: $font-size-base;
+        }
+        textarea {
+            display: block;
+            resize: none;
+            border-radius: $border-radius-normal;
+            border: 1px solid $gray200;
+            background-color: $gray300;
+            font-family: $font-family-base;
+            padding: $gutter;
+            margin-top: $gutter1_4;
+
+            &:disabled {
+                cursor: not-allowed;
+            }
+        }
+        &__input {
+            width: 100%;
+            height: 144px;
+            margin-bottom: $gutter;
+        }
+        &__output {
+            height: 310px;
+            width: 400px;
+        }
+
+        &__status {
+            @include flex(column, start, start);
+            flex: 1;
+
+            span {
+                width: 100%;
+                padding: $gutter;
+                border-top: 1px solid $gray200;
+                font-weight: $font-weight600;
+
+                &:not(:first-of-type) {
+                    border-bottom: 1px solid $gray200;
+                }
+                &:first-of-type {
+                    margin-top: $gutter;
+                }
+
+                &.passed {
+                    color: $green
+                }
+                &.failed {
+                    color: $red
+                }
+            }
+        }
+
+        .output {
+            @include flex(row, baseline, start);
+            gap: $gutter2x;
+
+            .btn-submit {
+                @include element-position(absolute, unset, 32px, 32px, unset);
+                color: $white;
+                background: $green;
+                
+                &:not(:disabled):hover {
+                    background: lighten($green, 5);
+                }
+            }
+        }
+
+    }
+}
