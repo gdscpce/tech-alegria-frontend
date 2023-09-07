@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./problemlist.scss";
 import { endpoint, getUserObject, setUserObject } from '../../constants/Constants';
 
 export default function ProblemList() {
