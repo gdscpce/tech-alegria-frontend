@@ -3,9 +3,11 @@ import "./auth.scss";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { User } from '../../constants/userObject';
+import { endpoint, setUserObject } from '../../constants/Constants';
+import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
+  const navigate = useNavigate();
   const [isLogin, setStatus] = useState(true);
   const isValidated = false;
   const [formData, setFormData] = useState({
@@ -32,16 +34,13 @@ export default function Auth() {
       progress: undefined,
       theme: "colored",
     });
-    axios.get("http://localhost:4000/api/v1/userdashboard")
+    axios.get(endpoint + "userdashboard", {
+      withCredentials: true
+    })
     .then((response) => {
-      console.log(response);
-      User = response.user;
-      if(User._id) {
-        toast.update(toaster, {render: "Logging Successfull", type: "success", isLoading: false, autoClose: true});
-        window.location.replace = "/problem-statement";
-      } else {
-        toast.update(toaster, {render: "Log In Failed Please Try Again", type: "error", isLoading: false, autoClose: true});
-      }
+      setUserObject(response.data.user);
+      toast.update(toaster, {render: "Logging Successful", type: "success", isLoading: false, autoClose: true});
+      navigate('/problem-statement', {replace: true});
     })
     .catch((err) => {
       toast.update(toaster, {render: "Log In Failed Please Try Again", type: "error", isLoading: false, autoClose: true});
@@ -63,7 +62,7 @@ export default function Auth() {
       theme: "colored",
     });
     e.preventDefault();
-    axios.post("http://localhost:4000/api/v1/login", {
+    axios.post(endpoint + "login", {
       email,
       password
     },{
@@ -97,7 +96,7 @@ export default function Auth() {
       theme: "colored",
     });
     e.preventDefault();
-    axios.post("http://localhost:4000/api/v1/signup", {
+    axios.post(endpoint + "signup", {
       name,
       email,
       collegeName,
@@ -108,9 +107,9 @@ export default function Auth() {
       setStatus(true);
     })
     .catch((err) => {
-      if(err.response.status == 503) {
+      if(err.response.status === 503) {
         toast.update(toaster, {render: "User Already Exists", type: "error", isLoading: false, autoClose: true});
-      } else if(err.response.status == 500) {
+      } else if(err.response.status === 500) {
         toast.update(toaster, {render: "Error Creating New User", type: "error", isLoading: false, autoClose: true});
       }
       console.log("ERROR", err);

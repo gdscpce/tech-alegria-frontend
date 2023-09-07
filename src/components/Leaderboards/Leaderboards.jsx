@@ -1,32 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import "./leaderboards.scss";
+import { endpoint } from '../../constants/Constants';
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
-  const [problemLinks, setProblemLinks] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:4000/api/v1/leaderboard")
+    axios.get(endpoint + "leaderboard")
       .then((response) => {
         setLeaderboard(response.data.data);
       })
       .catch((err) => {
         console.log("error fetching leadercoard", err);
       })
-
-    getProblemLinks();
   }, []);
-  async function getProblemLinks() {
-    axios.get("http://localhost:4000/api/v1/problems")
-      .then((response) => {
-        response.data.data.map((links, index) => {
-          problemLinks.push(links.redirectURL);
-        })
-      })
-      .catch((err) => {
-        console.log("Error getting links", err);
-      });
-  }
   function MapUsers() {
     function mapTimings(props) {
       return props.time.map((time, i) => {
@@ -57,12 +44,11 @@ export default function Leaderboard() {
               <th>WHO</th>
               <th>=</th>
               <th>Penalty</th>
-              <th>*</th>
-              <th><a href={problemLinks[0]}>A</a></th>
-              <th><a href={problemLinks[1]}>B</a></th>
-              <th><a href={problemLinks[2]}>C</a></th>
-              <th><a href={problemLinks[3]}>D</a></th>
-              <th><a href={problemLinks[4]}>E</a></th>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
+              <th>E</th>
             </tr>
           </thead>
           <tbody>

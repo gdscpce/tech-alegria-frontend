@@ -3,7 +3,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./problemlist.scss";
-import { User } from '../../constants/userObject';
+import { endpoint, getUserObject, setUserObject } from '../../constants/Constants';
 
 export default function ProblemList() {
     const [tabState, setTabStatus] = useState(true);
@@ -11,9 +11,10 @@ export default function ProblemList() {
     const [currentProblem, setCurrentProblem] = useState({});
     const [ismodalOpened, setModalVisibility] = useState(false);
     const [currentProblemOutput, setCurrentProblemOutput] = useState();
+    const currentUser = getUserObject();
     useEffect(() =>  {
-        if(User._id) {
-            axios.get('http://localhost:4000/api/v1/problems')
+        if(currentUser) {
+            axios.get(endpoint + 'problems')
             .then((response) => {
                 setProblems(response.data.data);
             })
@@ -34,7 +35,7 @@ export default function ProblemList() {
                 }, 3000)
             })
         } else {
-            axios.get('http://localhost:4000/api/v1/logout')
+            axios.get(endpoint + 'logout')
             .then(() => {
                 window.location.href = '/auth';
             })
@@ -55,7 +56,7 @@ export default function ProblemList() {
                 progress: undefined,
                 theme: "colored",
             });
-            axios.get('http://localhost:4000/api/v1/logout')
+            axios.get(endpoint + 'logout')
             .then(() => {
                 toast.update(toaster, {render: "Logout Successful", type: "success", isLoading: false, autoClose: true});
                 window.location.href = '/auth';
@@ -88,8 +89,10 @@ export default function ProblemList() {
         })
     }
     function authenticateTestCase() {
-        if (currentProblemOutput == currentProblem.specialTestCaseOutput) {
-            User.score = User.score + 100;
+        if (currentProblemOutput === currentProblem.specialTestCaseOutput) {
+            setUserObject({score: currentUser.score+100, ...currentUser})
+            currentUser = getUserObject();
+            console.log(currentUser);
             toast.success('Wohooooo! You Got it Right', {
                 position: "top-center",
                 autoClose: 2500,
@@ -133,7 +136,7 @@ export default function ProblemList() {
                             <div className="testcase__status">
                                 <label>Status</label>
                                 {currentProblemOutput ? 
-                                    currentProblemOutput == currentProblem.specialTestCaseOutput ?
+                                    currentProblemOutput === currentProblem.specialTestCaseOutput ?
                                         <span className='passed'>Testcase Passed</span> :
                                         <span className='failed'>Testcase Failed</span>
                                     :
@@ -156,18 +159,6 @@ export default function ProblemList() {
                     <div className="challenges__title">Challenges</div>
                     <div className="challenges__list">
                         {MapProblemList()}
-                        {/* <div className="challenge locked active">
-                            <h3>Problem Statement 1</h3>
-                            <button className='btn' onClick={() => redirectToProblem('https://www.hackerrank.com/challenges/deque-stl/problem')}></button>
-                        </div>
-                        <div className="challenge active failed">
-                            <h3>Problem Statement 1</h3>
-                            <button className='btn' onClick={() => redirectToProblem('https://www.hackerrank.com/challenges/deque-stl/problem')}></button>
-                        </div>
-                        <div className="challenge active passed">
-                            <h3>Problem Statement 1</h3>
-                            <button className='btn' onClick={() => redirectToProblem('https://www.hackerrank.com/challenges/deque-stl/problem')}></button>
-                        </div> */}
                     </div>
                 </div>
             </div>
@@ -197,10 +188,10 @@ export default function ProblemList() {
                         <li>Lorem ipsum dolor sit amet consectetur adipiscing elit fames magna cursus, parturient egestas auctor at sociosqu leo nulla netus. </li>
                     </ul>
                     <div className={!tabState ? "tab show" : "tab"}>
-                        <div className="points"><b>Name</b>{User.name}</div>
+                        <div className="points"><b>Name</b>{currentUser.name}</div>
                         <div className="points"><b>College</b>Pillai College Engineering, Panvel</div>
-                        <div className="points"><b>Email</b>{User.email}</div>
-                        <div className="points points--large"><b>Score</b><span>{User.score}</span></div>
+                        <div className="points"><b>Email</b>{currentUser.email}</div>
+                        <div className="points points--large"><b>Score</b><span>{currentUser.score}</span></div>
                         <p>Note: Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor, per luctus ligula dapibus magnis maecenas praesent, urna facilisis mollis montes ridiculus eros litora.</p>
                     </div>
                 </div>

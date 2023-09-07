@@ -6,10 +6,10 @@ import Auth from '../components/Auth/Auth';
 import Footer from '../components/Footer/Footer';
 import ProblemList from '../components/ProblemList/ProblemList';
 import Leaderboard from '../components/Leaderboards/Leaderboards';
-import { User } from '../constants/userObject';
+import { getUserObject } from '../constants/Constants';
 
 export default function Router() {
-  const isLoggedIn = User._id;
+  const isLoggedIn = getUserObject();
   return (
     <>
     <Navbar />
