@@ -7,7 +7,6 @@ import { endpoint, setUserObject } from '../../constants/Constants';
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
-  const navigate = useNavigate();
   const [isLogin, setStatus] = useState(true);
   const isValidated = false;
   const [formData, setFormData] = useState({
@@ -40,7 +39,7 @@ export default function Auth() {
     .then((response) => {
       setUserObject(response.data.user);
       toast.update(toaster, {render: "Logging Successful", type: "success", isLoading: false, autoClose: true});
-      navigate('/problem-statement', {replace: true});
+      window.location.href = '/problem-statement';
     })
     .catch((err) => {
       toast.update(toaster, {render: "Log In Failed Please Try Again", type: "error", isLoading: false, autoClose: true});
@@ -69,9 +68,8 @@ export default function Auth() {
       withCredentials: true,
     })
     .then((response) => {
-      getUser();
       toast.update(toaster, {render: "Please Wait", type: "default", isLoading: false, autoClose: 1});
-      console.log(response);
+      getUser();
     })
     .catch((err) => {
       toast.update(toaster, {render: "Error Bad Credentials", type: "error", isLoading: false, autoClose: true});

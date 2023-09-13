@@ -16,11 +16,15 @@ export default function Leaderboard() {
   }, []);
   function MapUsers() {
     function mapTimings(props) {
-      return props.time.map((time, i) => {
-        return (
-          <td key={i}><small className="result"><span>+</span>{time.submissionTime}</small></td>
-        )
-      })
+        let tds = [];
+        for(let i = 0; i < 5; i++) {
+          if(props.time[i]) {
+            tds.push(<td key={i}><small className="result"><span>+</span>{props.time[i].submissionTime}</small></td>);
+          } else {
+            tds.push(<td key={i}></td>)
+          }
+        }
+      return tds;
     }
     return leaderboard.map((data, index) => {
       return (
@@ -28,7 +32,6 @@ export default function Leaderboard() {
           <td>UserName</td>
           <td>6</td>
           <td>{data.penalty}</td>
-          <td></td>
           {mapTimings(data)}
         </tr>
       )
