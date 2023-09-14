@@ -5,16 +5,48 @@ import { endpoint } from "../../constants/Constants";
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
+
   useEffect(() => {
     axios
       .get(endpoint + "leaderboard")
       .then((response) => {
-        setLeaderboard(response.data.data);
+        let arr = response.data.data;
+        arr = arr.sort(compare_by_score);
+        arr = arr.sort(compare_by_penalty);
+        setLeaderboard(arr);
       })
       .catch((err) => {
         console.log("error fetching leadercoard", err);
       });
   }, []);
+
+  // Comparing based on the property item
+  function compare_by_score(a, b) {
+    // a should come before b in the sorted order
+    if (a.score > b.score) {
+      return -1;
+      // a should come after b in the sorted order
+    } else if (a.score < b.score) {
+      return 1;
+      // and and b are the same
+    } else {
+      return 0;
+    }
+  }
+  //Comparing based on the property qty
+  function compare_by_penalty(a, b) {
+    // a should come before b in the sorted order
+    if (a.score == b.score && a.penalty < b.penalty) {
+      return -1;
+      // a should come after b in the sorted order
+    } else if (a.score == b.score && a.penalty > b.penalty) {
+      return 1;
+      // a and b are the same
+    } else {
+      return 0;
+    }
+  }
+
   function MapUsers() {
     function mapTimings(props) {
       let tds = [];
@@ -36,22 +68,25 @@ export default function Leaderboard() {
       }
       return tds;
     }
-    return leaderboard.map((data, index) => {
-      return (
-        <tr key={index}>
-          <td>{data.userName}</td>
-          <td>{data.score / 100}</td>
-          <td>{data.penalty}</td>
-          {mapTimings(data)}
-        </tr>
-      );
-    });
+    return (
+      leaderboard &&
+      leaderboard.map((data, index) => {
+        return (
+          <tr key={index}>
+            <td>{data && data.userName}</td>
+            <td>{data && data.score / 100}</td>
+            <td>{data && data.penalty}</td>
+            {data && mapTimings(data)}
+          </tr>
+        );
+      })
+    );
   }
   return (
     <div className="leaderboards">
       <div className="table-responsive">
         {leaderboard.length ? (
-          <table cellPadding={15} cellSpacing={0}>
+          <table cellPadding={19} cellSpacing={0}>
             <thead>
               <tr>
                 <th>WHO</th>
