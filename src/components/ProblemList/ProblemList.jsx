@@ -8,6 +8,7 @@ import {
   endpoint,
   getUserObject,
   contestStartTimer,
+  timerEndTime,
 } from "../../constants/Constants";
 import { useTimer } from "react-timer-hook";
 
@@ -19,8 +20,8 @@ export default function ProblemList() {
   const [currentUser, updateCurrentUser] = useState(getUserObject());
   const [currentIndex, setCurrentIndex] = useState(0);
   const [problemState, setProblemState] = useState([]);
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 7200); // 2 hr timer
+  //   const time = new Date();
+  //   time.setSeconds(time.getSeconds() + 7200); // 2 hr timer
   useEffect(() => {
     if (currentUser) {
       axios
@@ -341,7 +342,7 @@ export default function ProblemList() {
       </div>
       <div className="problem">
         <div className="left">
-          <Timer expiryTimestamp={time} />
+          <Timer expiryTimestamp={timerEndTime} />
           <div className="challenges">
             <div className="challenges__title">Challenges</div>
             <div className="challenges__list">{MapProblemList()}</div>
