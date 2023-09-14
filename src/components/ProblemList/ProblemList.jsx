@@ -3,7 +3,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import "./problemlist.scss";
 import 'react-toastify/dist/ReactToastify.css';
-import { endpoint, getUserObject } from '../../constants/Constants';
+import { deleteUserObject, endpoint, getUserObject } from '../../constants/Constants';
 import { useTimer } from 'react-timer-hook';
 
 export default function ProblemList() {
@@ -14,7 +14,7 @@ export default function ProblemList() {
     const [currentUser, updateCurrentUser] = useState(getUserObject());
     const [currentIndex, setCurrentIndex] = useState(0);
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 7200); // 2 hr timer
+    time.setSeconds(time.getSeconds() + 32); // 2 hr timer
     useEffect(() => {
         if (currentUser) {
             axios.get(endpoint + 'problems')
@@ -101,9 +101,30 @@ export default function ProblemList() {
                     progress: undefined,
                     theme: "colored",
                 });
-                setTimeout(() => {
-                    logoutUser();
-                },1000);
+                const toaster = toast.loading('Logging You Out...', {
+                    position: "top-center",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                axios.get(endpoint + 'logout')
+                    .then(() => {
+                        const res = deleteUserObject();
+                        if (res) {
+                            toast.update(toaster, { render: "Logout Successful", type: "success", isLoading: false, autoClose: true });
+                            setTimeout(() => {
+                                window.location.href = '/';
+                            }, 1000);
+                        }
+                    })
+                    .catch((err) => {
+                        toast.update(toaster, { render: "Cannot Log you out", type: "error", isLoading: false, autoClose: true });
+                        console.log(err);
+                    })
             }
         });
         let deadline = hours <=0 && minutes <=0 && seconds <=30; 
