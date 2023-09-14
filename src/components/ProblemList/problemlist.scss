@@ -2,10 +2,19 @@
 @import "../../assets/styles/sudo";
 @import "../../assets/styles/flex";
 
+@keyframes pulse {
+    0%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
 .problem {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    align-items: baseline;
+    align-items: start;
     justify-content: center;
     padding: $gutter $gutter3x;
     gap: $gutter2x;
@@ -24,13 +33,22 @@
                 padding-left: 40px;
                 margin-bottom: $gutter1_2;
 
+                &.text-danger {
+                    color: $red;
+                    border-color: $red;
+
+                    &::before {
+                        animation: pulse 400ms infinite reverse;
+                    }
+                }
+
                 &::before {
                     @include sudo-fill(absolute, 50%, unset, unset, 16px);
                     width: 14px;
                     height: 14px;
                     background-size: 14px 14px;
                     background-color: $red;
-                    border-radius: $border-radius-small;
+                    border-radius: $border-radius-rounded;
                     transform: translateY(-50%);
                 }
             }
@@ -135,16 +153,19 @@
                                 background: url('../../assets/images/external-link.svg') center center no-repeat;
                                 transition: $transition-in-out;
                             }
-                            &:hover::before {
+                            &:not(:disabled):hover::before {
                                 transform: scale(1.2);
                             }
                         }
                         .btn-unlock {
                             color: $green;
-                            &:hover {
+                            &:not(:disabled):hover {
                                 background-color: $green;
                                 color: $white;
                             }
+                        }
+                        .text-success {
+                            color: $green;
                         }
                     }
                 }
@@ -250,56 +271,23 @@
                 cursor: not-allowed;
             }
         }
-        &__input {
+        &__input, &__output {
             width: 100%;
             height: 144px;
             margin-bottom: $gutter;
         }
-        &__output {
-            height: 310px;
-            width: 400px;
-        }
+        .btn-submit {
+            @include element-position(absolute, unset, 32px, 32px, unset);
+            color: $white;
+            background: $green;
 
-        &__status {
-            @include flex(column, flex-start, flex-start);
-            flex: 1;
-
-            span {
-                width: 100%;
-                padding: $gutter;
-                border-top: 1px solid $gray200;
-                font-weight: $font-weight600;
-
-                &:not(:first-of-type) {
-                    border-bottom: 1px solid $gray200;
-                }
-                &:first-of-type {
-                    margin-top: $gutter;
-                }
-
-                &.passed {
-                    color: $green
-                }
-                &.failed {
-                    color: $red
-                }
+            &:disabled {
+                background: $gray200;
+            }
+            
+            &:not(:disabled):hover {
+                background: lighten($green, 5);
             }
         }
-
-        .output {
-            @include flex(row, baseline, flex-start);
-            gap: $gutter2x;
-
-            .btn-submit {
-                @include element-position(absolute, unset, 32px, 32px, unset);
-                color: $white;
-                background: $green;
-                
-                &:not(:disabled):hover {
-                    background: lighten($green, 5);
-                }
-            }
-        }
-
     }
 }
