@@ -16,8 +16,8 @@ export default function Landing() {
         )}
         <h1 className="landing__title">&lt;Code Hunt/&gt;</h1>
         <p className="landing__desc">
-          Lorem ispum doler emmut sit, Lorem ispum doler emmut sit, ispum doler
-          emmut sit, ispum doler emmut sit, ispum doler emmut sit,
+          Programming is the art of algorithm design and the craft of debugging
+          errant code.
         </p>
         <div className="buttons">
           <a className="btn landing__btn" href="/problem-statement">

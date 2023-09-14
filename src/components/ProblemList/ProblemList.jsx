@@ -369,7 +369,7 @@ export default function ProblemList() {
               className={tabState ? "btn active" : "btn"}
               onClick={() => setTabStatus(true)}
             >
-              Rules
+              Rules & Process Flow
             </button>
             <button
               className={tabState ? "btn" : "btn active"}
@@ -381,39 +381,48 @@ export default function ProblemList() {
           <div className="right__content">
             <ul className={tabState ? "tab show" : "tab"} id="rules-content">
               <li>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit fames
-                magna cursus, parturient egestas auctor at sociosqu leo nulla
-                netus.{" "}
+                Login to Tech Alegria Website and click on open problem button
+                to redirect to hackerrank.
               </li>
               <li>
-                Placerat vehicula nibh faucibus rutrum aliquam condimentum
-                pellentesque, aptent dui molestie quisque sem phasellus cum
-                malesuada, a hac litora venenatis sodales ridiculus.{" "}
+                Once you are redirected to the hackerrank contest, register for
+                it and enter the system.
               </li>
               <li>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit fames
-                magna cursus, parturient egestas auctor at sociosqu leo nulla
-                netus.{" "}
+                Solve the problem on hackerrank until it is accepted there.
               </li>
               <li>
-                Placerat vehicula nibh faucibus rutrum aliquam condimentum
-                pellentesque, aptent dui molestie quisque sem phasellus cum
-                malesuada, a hac litora venenatis sodales ridiculus.{" "}
+                Once the problem on hackerrank is accepted, go to Tech Alegria
+                Website and click on unlock.
               </li>
               <li>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit fames
-                magna cursus, parturient egestas auctor at sociosqu leo nulla
-                netus.{" "}
+                Once you click on unlock of current problem, modal will open.
+                Copy the Custom Input from it and redirect to hackerrank.
               </li>
               <li>
-                Placerat vehicula nibh faucibus rutrum aliquam condimentum
-                pellentesque, aptent dui molestie quisque sem phasellus cum
-                malesuada, a hac litora venenatis sodales ridiculus.{" "}
+                Run that copied custom input on hackerrank (option with custom
+                input compile) and then copy the result.
               </li>
               <li>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit fames
-                magna cursus, parturient egestas auctor at sociosqu leo nulla
-                netus.{" "}
+                Redirect to the Tech Alegria website and paste the result in the
+                Paste Your Output box and click on submit.
+              </li>
+              <li>
+                If the output is correct, it will unlock next problem statement.
+                Repeat this process for each problem statement.
+              </li>
+              <li>
+                <hr />
+                <b>Rule 1 :</b> Cheating and using AI tools is strictly
+                prohibited.
+              </li>
+              <li>
+                <b>Rule 2 :</b> Problem statement must be strictly accepted on
+                hackerank before unlocking on Tech Alegria Website.
+              </li>
+              <li>
+                <b>Rule 3 :</b> In case of any disputes, the decision of
+                managing committee will be final
               </li>
             </ul>
             <div className={!tabState ? "tab show" : "tab"}>
@@ -432,11 +441,6 @@ export default function ProblemList() {
                 <b>Score</b>
                 <span>{currentUser?.score}</span>
               </div>
-              <p>
-                Note: Lorem ipsum dolor sit amet consectetur adipiscing elit
-                porttitor, per luctus ligula dapibus magnis maecenas praesent,
-                urna facilisis mollis montes ridiculus eros litora.
-              </p>
             </div>
           </div>
         </div>
