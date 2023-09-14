@@ -53,7 +53,7 @@ export default function ProblemList() {
                     console.log(err);
                 })
         }
-    }, []);
+    }, [problems.length, currentUser]);
     async function getUserScore() {
         await axios.get(endpoint + 'getScore/' + currentUser._id)
             .then((response) => {

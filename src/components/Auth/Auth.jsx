@@ -4,7 +4,6 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { endpoint, setUserObject } from '../../constants/Constants';
-import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
   const [isLogin, setStatus] = useState(true);
