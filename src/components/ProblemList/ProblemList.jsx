@@ -53,7 +53,7 @@ export default function ProblemList() {
                     console.log(err);
                 })
         }
-    }, [problems.length, currentUser]);
+    }, []);
     async function getUserScore() {
         await axios.get(endpoint + 'getScore/' + currentUser._id)
             .then((response) => {
@@ -160,6 +160,7 @@ export default function ProblemList() {
         })
     }
     function authenticateTestCase() {
+        const contestStartTimer=13*60*60;
         if (currentProblemOutput === problems[currentIndex].specialTestCaseOutput) {
             setCurrentProblemOutput('');
             toast.success('Wohooooo! You Got it Right', {
@@ -172,19 +173,23 @@ export default function ProblemList() {
                 progress: undefined,
                 theme: "colored",
             });
+            const currDate=new Date(Date.now());
+            const mins=(currDate.getHours()*60)+currDate.getMinutes();
+            const problemSubmittedTime=mins*60;
+            console.log(problemSubmittedTime);
             axios.put(endpoint + 'updateScore', {
                 userId: currentUser._id,
                 problemId: problems[currentIndex]._id,
-                startTime: 0,
-                timeSubmitted: Date.now(),
+                startTime: contestStartTimer,
+                timeSubmitted: problemSubmittedTime,
+                submissionTime: (problemSubmittedTime-contestStartTimer)/60,
                 score: problems[currentIndex].score,
-            }, {
-                withCredentials: true
             })
                 .then((response) => {
                     getUserScore();
                     let updatedProblem = [...problems];
                     updatedProblem[currentIndex] = { ...updatedProblem[currentIndex], state: 'passed' }
+                    // TODO: 'add api for state pass'
                     setProblems(updatedProblem);
                     if (currentIndex != 4) {
                         setCurrentIndex(currentIndex + 1);
@@ -207,6 +212,7 @@ export default function ProblemList() {
             });
             let updatedProblem = [...problems];
             updatedProblem[currentIndex] = { ...updatedProblem[currentIndex], state: 'failed' }
+            // TODO: 'add api for state pass'
             setProblems(updatedProblem);
         }
     }

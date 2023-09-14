@@ -16,6 +16,27 @@ export default function Landing() {
         <div></div>
         <div></div>
       </div> */}
+      <div className="timeline">
+        <div className="timeline__title">&lt;Rewards/&gt;</div>
+        <div className="timeline__points">
+          <div className="point red">
+            <span>1st Prize</span>
+            <p>₹1500 /- Cash Prize + Certificate</p>
+          </div>
+          <div className="point yellow">
+            <span>2nd Prize</span>
+            <p>₹500 /- Cash Prize + Certificate</p>
+          </div>
+          <div className="point blue">
+            <span>3rd Prize</span>
+            <p>2nd Runner Up Certificate</p>
+          </div>
+          <div className="point green">
+            <span>Participation</span>
+            <p>All participants will get participation certificate</p>
+          </div>
+        </div>
+      </div>
       </div>
     </>
   );

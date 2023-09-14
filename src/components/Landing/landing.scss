@@ -14,7 +14,7 @@
     &__title {
         color: $black;
         font-family: $font-family-mono;
-        font-size: $font-size-l;
+        font-size: $font-size-xl;
         margin-bottom: $gutter24;
     }
 
@@ -42,6 +42,85 @@
         background: $yellow;
         &:hover {
             background: lighten($yellow, 5);
+        }
+    }
+
+    .timeline {
+        text-align: center;
+        margin-top: $gutter4x;
+        &__title {
+            font-size: $font-size-l;
+            font-family: $font-family-mono;
+            color: $black;
+        }
+        &__points {
+            position: relative;
+            width: 400px;
+            .point {
+                @include flex(row, center, start);
+                width: 100%;
+                position: relative;
+                gap: 120px;
+                margin-top: 100px;
+
+                &:before {
+                    @include sudo-fill(absolute, 7px, unset, 0, 39%);
+                    border-radius: $border-radius-rounded;
+                    height: 30px;
+                    width: 30px;
+                    box-shadow: $box-shadow-locked-large;
+                }
+
+                span {
+                    width: 100px;
+                    font-size: $font-size-sm;
+                    font-weight: $font-weight700;
+                }
+
+                p {
+                    text-align: start;
+                    font-weight: $font-weight600;
+                    color: $black;
+                }
+
+                &.red {
+                    span {
+                        color: $red;
+                    }
+                    &::before {
+                        background-color: $red;
+                    }
+                }
+                &.yellow {
+                    span {
+                        color: $yellow;
+                    }
+                    &::before {
+                        background-color: $yellow;
+                    }
+                }
+                &.blue {
+                    span {
+                        color: $blue;
+                    }
+                    &::before {
+                        background-color: $blue;
+                    }
+                }
+                &.green {
+                    span {
+                        color: $green;
+                    }
+                    &::before {
+                        background-color: $green;
+                    }
+                }
+            }
+            &::before {
+                @include sudo-fill(absolute, -24px, unset, -24px, 42%);
+                background-color: $black;
+                width: 3px;
+            }
         }
     }
 }

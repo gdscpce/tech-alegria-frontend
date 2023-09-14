@@ -21,31 +21,6 @@ export default function Auth() {
     })
   }
 
-  async function getUser() {
-    const toaster = toast.loading('Registering Your Entry...', {
-      position: "top-center",
-      autoClose: 2500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-    axios.get(endpoint + "userdashboard", {
-      withCredentials: true
-    })
-    .then((response) => {
-      setUserObject(response.data.user);
-      toast.update(toaster, {render: "Logging Successful", type: "success", isLoading: false, autoClose: true});
-      window.location.href = '/problem-statement';
-    })
-    .catch((err) => {
-      toast.update(toaster, {render: "Log In Failed Please Try Again", type: "error", isLoading: false, autoClose: true});
-      console.log("error fetching user object", err);
-    })
-  }
-
   async function loginUser(e) {
     let email = formData.email;
     let password = formData.password;
@@ -63,12 +38,12 @@ export default function Auth() {
     axios.post(endpoint + "login", {
       email,
       password
-    },{
-      withCredentials: true,
     })
     .then((response) => {
       toast.update(toaster, {render: "Please Wait", type: "default", isLoading: false, autoClose: 1});
-      getUser();
+      setUserObject(response.data.user);
+      toast.update(toaster, {render: "Logging Successful", type: "success", isLoading: false, autoClose: true});
+      window.location.href = '/problem-statement';
     })
     .catch((err) => {
       toast.update(toaster, {render: "Error Bad Credentials", type: "error", isLoading: false, autoClose: true});

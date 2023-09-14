@@ -29,7 +29,7 @@ export default function Leaderboard() {
     return leaderboard.map((data, index) => {
       return (
         <tr key={index}>
-          <td>UserName</td>
+          <td>{data.userName}</td>
           <td>6</td>
           <td>{data.penalty}</td>
           {mapTimings(data)}
