@@ -295,6 +295,9 @@ export default function ProblemList() {
         state: "failed",
       });
       setProblems(updatedProblem);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2500);
     }
   }
   return (
