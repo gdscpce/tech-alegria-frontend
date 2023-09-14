@@ -10,5 +10,5 @@ export function deleteUserObject() {
     return true;
 }
 
-// export const endpoint = 'http://localhost:4000/api/v1/';
-export const endpoint = 'https://techalegriaserver.onrender.com/api/v1/';
+export const endpoint = 'http://localhost:4000/api/v1/';
+// export const endpoint = 'https://techalegriaserver.onrender.com/api/v1/';

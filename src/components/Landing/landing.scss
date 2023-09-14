@@ -16,6 +16,7 @@
         font-family: $font-family-mono;
         font-size: $font-size-xl;
         margin-bottom: $gutter24;
+        margin-top: $gutter;
     }
 
     &__desc {
@@ -37,6 +38,10 @@
         }
     }    
 
+    .buttons {
+        @include flex(row, center, center);
+        gap: $gutter2x;
+    }
     &__btn {
         color: $black;
         background: $yellow;

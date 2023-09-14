@@ -107,23 +107,19 @@ export default function Auth() {
           <form onSubmit={signupUser} className='auth__user'>
             <label>
               <div className='h3'>Full Name</div>
-              <input id="name" type="text" onChange={(e) => updateForm({name: e.target.value})} />
-              <small className='error'>*Full Name is Required</small>
+              <input id="name" type="text" onChange={(e) => updateForm({name: e.target.value})} required/>
             </label>
             <label>
               <div className='h3'>College Name</div>
-              <input id="clgname" type="text" onChange={(e) => updateForm({clgname: e.target.value})} />
-              <small className='error'>*College Name is Required</small>
+              <input id="clgname" type="text" onChange={(e) => updateForm({clgname: e.target.value})} required/>
             </label>
             <label>
               <div className='h3'>E-Mail</div>
-              <input id="email" type="email" onChange={(e) => updateForm({email: e.target.value})} />
-              <small className='error'>*E-mail is Required</small>
+              <input id="email" type="email" onChange={(e) => updateForm({email: e.target.value})} required/>
             </label>
             <label>
               <div className='h3'>Password</div>
-              <input id="pass" type="password" onChange={(e) => updateForm({password: e.target.value})} />
-              <small className='error'>*Password is Required</small>
+              <input id="pass" type="password" onChange={(e) => updateForm({password: e.target.value})} required/>
             </label>
             <input className='btn btn-submit' type="submit" value="Let's get going" disabled={isValidated} />
           </form>
@@ -131,13 +127,11 @@ export default function Auth() {
           <form className="auth__user" onSubmit={loginUser}>
             <label>
               <div className="h3">E-mail</div>
-              <input id="email" type="email" onChange={(e) => updateForm({email: e.target.value})} />
-              <small className='error'>*E-mail is Required</small>
+              <input id="email" type="email" onChange={(e) => updateForm({email: e.target.value})} required/>
             </label>
             <label>
               <div className="h3">Password</div>
-              <input id="pass" type="password" onChange={(e) => updateForm({password: e.target.value})} />
-              <small className='error'>*Password is Required</small>
+              <input id="pass" type="password" onChange={(e) => updateForm({password: e.target.value})} required/>
             </label>
             <input className='btn btn-submit' type="submit" value="Let's get going" disabled={isValidated} />
           </form>

@@ -13,19 +13,29 @@ export default function ProblemList() {
     const [currentProblemOutput, setCurrentProblemOutput] = useState();
     const [currentUser, updateCurrentUser] = useState(getUserObject());
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [problemState, setProblemState] = useState([]);
     const time = new Date();
     time.setSeconds(time.getSeconds() + 7200); // 2 hr timer
     useEffect(() => {
         if (currentUser) {
             axios.get(endpoint + 'problems')
                 .then((response) => {
-                    var updatedData;
-                    if (problems.length) {
-                        updatedData = response.data.data.map((item, index) => ({ ...item, state: problems[index].state }));
-                    } else {
-                        updatedData = response.data.data.map(item => ({ ...item, state: 'locked' }));
-                    }
-                    setProblems(updatedData);
+                    axios.get(endpoint + 'getAllProblemsState/' + currentUser._id)
+                        .then((res) => {
+                            let resp = res.data.data.status
+                            let statuscode = -1;
+                            resp.forEach((item, index) => {
+                                if(item.state == 'locked' || item.state == 'failed') {
+                                    if(statuscode == -1) {
+                                        statuscode = index;
+                                        console.log(index);
+                                    }
+                                }
+                            })
+                            setCurrentIndex(statuscode);
+                            setProblemState(resp);
+                        })
+                    setProblems(response.data.data);
                     getUserScore();
                 })
                 .catch((err) => {
@@ -145,15 +155,15 @@ export default function ProblemList() {
     function MapProblemList() {
         return problems.map((data, index) => {
             return (
-                <div key={index} className={`challenge ${data._id == problems[currentIndex]._id ? " active " : ""} ${data.state}`}>
+                <div key={index} className={`challenge ${index == currentIndex ? " active " : ""} ${problemState.find(item => item.problemId == data._id)?.state}`}>
                     <h3>{data.title}</h3>
                     <div className='buttons'>
-                        {data.state == 'passed' ?
+                        {problemState.find(item => item.problemId == data._id)?.state == 'passed' ?
                             <div className='text-success'>Passed</div>
                             :
                             <button disabled={data._id == problems[currentIndex]._id ? false : true} className='btn btn-unlock' onClick={() => openModal(index)}>Unlock</button>
                         }
-                        <button disabled={data.state != 'locked' ||  data._id == problems[currentIndex]._id ? false : true} className='btn btn-link' onClick={() => redirectToProblem(data.redirectURL)}></button>
+                        <button disabled={problemState.find(item => item.problemId == data._id)?.state != 'locked' || index == currentIndex ? false : true} className='btn btn-link' onClick={() => redirectToProblem(data.redirectURL)}></button>
                     </div>
                 </div>
             )
@@ -176,12 +186,11 @@ export default function ProblemList() {
             const currDate=new Date(Date.now());
             const mins=(currDate.getHours()*60)+currDate.getMinutes();
             const problemSubmittedTime=mins*60;
-            console.log(problemSubmittedTime);
             axios.put(endpoint + 'updateScore', {
                 userId: currentUser._id,
                 problemId: problems[currentIndex]._id,
                 startTime: contestStartTimer,
-                timeSubmitted: problemSubmittedTime,
+                timeSubmitted: (problemSubmittedTime-contestStartTimer)/60,
                 submissionTime: (problemSubmittedTime-contestStartTimer)/60,
                 score: problems[currentIndex].score,
             })
@@ -189,7 +198,10 @@ export default function ProblemList() {
                     getUserScore();
                     let updatedProblem = [...problems];
                     updatedProblem[currentIndex] = { ...updatedProblem[currentIndex], state: 'passed' }
-                    // TODO: 'add api for state pass'
+                    axios.put(endpoint + 'updateProblemStatus/' + currentUser._id, {
+                        problemId: problems[currentIndex]?._id,
+                        state: 'passed'
+                    })
                     setProblems(updatedProblem);
                     if (currentIndex != 4) {
                         setCurrentIndex(currentIndex + 1);
@@ -199,6 +211,9 @@ export default function ProblemList() {
                     console.log("Error updating score", err);
                 })
             setModalVisibility(false);
+            setTimeout(() => {
+                window.location.reload();
+            }, 2500);
         } else {
             toast.error('Oops! Wrong Answer', {
                 position: "top-center",
@@ -212,7 +227,10 @@ export default function ProblemList() {
             });
             let updatedProblem = [...problems];
             updatedProblem[currentIndex] = { ...updatedProblem[currentIndex], state: 'failed' }
-            // TODO: 'add api for state pass'
+            axios.put(endpoint + 'updateProblemStatus/' + currentUser._id, {
+                problemId: problems[currentIndex]?._id,
+                state: 'failed'
+            })
             setProblems(updatedProblem);
         }
     }
