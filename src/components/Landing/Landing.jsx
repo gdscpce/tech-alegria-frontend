@@ -9,34 +9,45 @@ export default function Landing() {
     <>
       <div className="landing">
         <img className="landing__img" src={plane} alt="plane" />
-        {currentUser.name ? <b>Welcome {currentUser.name} to,</b> : <></>}
+        {currentUser && currentUser.name ? (
+          <b>Welcome {currentUser.name} to,</b>
+        ) : (
+          <></>
+        )}
         <h1 className="landing__title">&lt;Code Hunt/&gt;</h1>
-        <p className="landing__desc">Lorem ispum doler emmut sit, Lorem ispum doler emmut sit, ispum doler emmut sit, ispum doler emmut sit, ispum doler emmut sit,</p>
+        <p className="landing__desc">
+          Lorem ispum doler emmut sit, Lorem ispum doler emmut sit, ispum doler
+          emmut sit, ispum doler emmut sit, ispum doler emmut sit,
+        </p>
         <div className="buttons">
-          <a className="btn landing__btn" href="/problem-statement">Lets Get going</a>
-          <a className="btn landing__btn" href="/leaderboard">Leaderboard</a>
+          <a className="btn landing__btn" href="/problem-statement">
+            Lets Get going
+          </a>
+          <a className="btn landing__btn" href="/leaderboard">
+            Leaderboard
+          </a>
         </div>
-      <div className="timeline">
-        <div className="timeline__title">&lt;Rewards/&gt;</div>
-        <div className="timeline__points">
-          <div className="point red">
-            <span>1st Prize</span>
-            <p>₹1500 /- Cash Prize + Certificate</p>
-          </div>
-          <div className="point yellow">
-            <span>2nd Prize</span>
-            <p>₹500 /- Cash Prize + Certificate</p>
-          </div>
-          <div className="point blue">
-            <span>3rd Prize</span>
-            <p>2nd Runner Up Certificate</p>
-          </div>
-          <div className="point green">
-            <span>Participation</span>
-            <p>All participants will get participation certificate</p>
+        <div className="timeline">
+          <div className="timeline__title">&lt;Rewards/&gt;</div>
+          <div className="timeline__points">
+            <div className="point red">
+              <span>1st Prize</span>
+              <p>₹1500 /- Cash Prize + Certificate</p>
+            </div>
+            <div className="point yellow">
+              <span>2nd Prize</span>
+              <p>₹500 /- Cash Prize + Certificate</p>
+            </div>
+            <div className="point blue">
+              <span>3rd Prize</span>
+              <p>2nd Runner Up Certificate</p>
+            </div>
+            <div className="point green">
+              <span>Participation</span>
+              <p>All participants will get participation certificate</p>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </>
   );
