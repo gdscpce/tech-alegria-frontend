@@ -100,16 +100,11 @@
                     }
 
                     &.active {
+                        box-shadow: $box-shadow-locked-large;
                         &.passed{
                             box-shadow: $box-shadow-success-large;
                             &:after {
                                 border-color: $green;
-                            }
-                        }
-                        &.locked{
-                            box-shadow: $box-shadow-locked-large;
-                            &:after {
-                                border-color: $gray200;
                             }
                         }
                         &.failed{
@@ -123,6 +118,7 @@
                             border-width: 6px;
                             border-style: solid;
                             border-radius: $border-radius-medium;
+                            border-color: $gray200;
                         }
                     }
 
