@@ -14,7 +14,7 @@ export default function ProblemList() {
     const [currentUser, updateCurrentUser] = useState(getUserObject());
     const [currentIndex, setCurrentIndex] = useState(0);
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 32); // 2 hr timer
+    time.setSeconds(time.getSeconds() + 7200); // 2 hr timer
     useEffect(() => {
         if (currentUser) {
             axios.get(endpoint + 'problems')
