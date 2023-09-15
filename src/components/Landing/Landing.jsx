@@ -32,7 +32,7 @@ export default function Landing() {
           <div className="timeline__points">
             <div className="point red">
               <span>1st Prize</span>
-              <p>₹1500 /- Cash Prize + Certificate</p>
+              <p>₹1000 /- Cash Prize + Certificate</p>
             </div>
             <div className="point yellow">
               <span>2nd Prize</span>
