@@ -322,7 +322,7 @@ export default function ProblemList() {
               <label>Custom Test Case</label>
               <textarea
                 className="testcase__input"
-                disabled
+                readOnly
                 value={problems[currentIndex]?.specialTestCaseInput}
               ></textarea>
               <label>Your Output</label>
